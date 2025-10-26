@@ -116,7 +116,7 @@ Visualized rating distributions and patterns:
 ## 🧾 Example Outputs
 
 ### 🔹 Confusion Matrix
-Saved at `artifacts/cm_distilbert_binary.png`
+Saved at `artifacts\cm_distilbert_3class.png`
 
 ### 🔹 Evaluation Metrics
 | Metric | Score |
@@ -124,7 +124,7 @@ Saved at `artifacts/cm_distilbert_binary.png`
 | **Accuracy** | ~0.44 |
 | **Weighted F1-Score** | ~0.38 |
 
-onfusion Matrix example:  
+Confusion Matrix example:  
 ![Confusion Matrix](artifacts\cm_distilbert_3class.png)
 
 ---
