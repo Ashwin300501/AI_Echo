@@ -1,0 +1,6 @@
+{
+  "clean_dataset_path": "/content/drive/MyDrive/AI_Echo/data/clean/reviews_clean.parquet",
+  "created_plots_dir": "/content/drive/MyDrive/AI_Echo/eda/plots",
+  "language_filter": false,
+  "helpful_threshold": 10
+}

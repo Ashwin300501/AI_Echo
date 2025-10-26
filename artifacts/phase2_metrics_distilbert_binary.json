@@ -1,0 +1,9 @@
+{
+  "accuracy": 0.6923076923076923,
+  "f1_weighted": 0.6910866910866911,
+  "f1_binary": 0.6666666666666666,
+  "label_map": {
+    "negative": 0,
+    "positive": 1
+  }
+}

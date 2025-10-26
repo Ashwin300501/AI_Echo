@@ -1,0 +1,34 @@
+# ====================================================
+# AI Echo Project — Git Ignore Rules
+# ====================================================
+
+# --- Ignore only model weights ---
+models/
+!models/README.txt
+
+# --- Python cache & temp files ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+*.tmp
+*.log
+*.bak
+
+# --- Notebook checkpoints ---
+.ipynb_checkpoints/
+
+# --- Environment & system files ---
+.env
+.DS_Store
+Thumbs.db
+
+# --- Data backups or temp zips ---
+*.zip
+*.tar.gz
+*.7z
+
+# --- IDE/Editor settings ---
+.vscode/
+.idea/
