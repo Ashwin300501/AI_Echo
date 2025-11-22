@@ -20,9 +20,10 @@ from transformers import (
 st.set_page_config(page_title="AI Echo Sentiment Dashboard", page_icon="🧠", layout="wide")
 
 # --------------------------------------------------------------
-ROOT = Path(r"D:\Data Science\AI_Echo").resolve()
+ROOT = Path(__file__).parent
 DATA_PATH = ROOT / "data" / "clean" / "reviews_clean.parquet"
-MODEL_PATH = ROOT / "models" / "distilbert_sentiment"
+
+MODEL_ID="Ashwin20015/ai-echo-distilbert-sentiment"
 
 # --------------------------------------------------------------
 # Loaders
@@ -43,14 +44,19 @@ def load_data(path: Path):
     return df
 
 @st.cache_resource(show_spinner=False)
-def load_model(model_dir: Path):
-    if not model_dir.exists():
-        st.error(f"Model folder not found at:\n{model_dir}")
-        st.stop()
-    tok = AutoTokenizer.from_pretrained(str(model_dir))
-    mdl = AutoModelForSequenceClassification.from_pretrained(str(model_dir))
+def load_model(model_id: str):
+    # This will download from Hugging Face the first time, then cache
+    tok = AutoTokenizer.from_pretrained(model_id)
+    mdl = AutoModelForSequenceClassification.from_pretrained(model_id)
+
     device = 0 if torch.cuda.is_available() else -1
-    pipe = TextClassificationPipeline(model=mdl, tokenizer=tok, device=device, return_all_scores=True)
+    pipe = TextClassificationPipeline(
+        model=mdl,
+        tokenizer=tok,
+        device=device,
+        return_all_scores=True,
+    )
+
     id2label = mdl.config.id2label
     label_order = [id2label[i] for i in sorted(id2label.keys())]
     return pipe, label_order
@@ -80,13 +86,13 @@ def make_wordcloud(texts, title):
 # Load
 # --------------------------------------------------------------
 df_raw = load_data(DATA_PATH)
-pipe, label_order = load_model(MODEL_PATH)
+pipe, label_order = load_model(MODEL_ID)
 df = add_model_predictions(df_raw, _pipe=pipe)
 
 # --------------------------------------------------------------
 # Layout
 # --------------------------------------------------------------
-st.title("🧠 AI Echo — ChatGPT Review Sentiment Dashboard")
+st.title("🧠 AI Echo —Review Sentiment Dashboard")
 st.caption("All insights below come from the fine-tuned DistilBERT model.")
 
 tab1, tab2 = st.tabs(["💬 Sentiment Prediction", "📊 Key Questions & Insights"])
@@ -247,4 +253,3 @@ with tab2:
         st.info("Not enough negative reviews to extract themes.")
 
 st.markdown("---")
-st.caption("© 2025 AI Echo | DistilBERT-powered Sentiment Dashboard (model-only)")
