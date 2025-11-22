@@ -41,7 +41,8 @@ To build a complete **end-to-end NLP pipeline** for ChatGPT user review analysis
 │   └── phase2_metrics_distilbert_binary.json      ← model performance metrics
 │
 ├── app.py                                         ← Streamlit app (model-only)
-└── README.md
+├── README.md
+└──requirements.txt
 ```
 
 ---
