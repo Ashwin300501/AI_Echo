@@ -12,7 +12,7 @@ To build a complete **end-to-end NLP pipeline** for ChatGPT user review analysis
 1. Clean and preprocess textual reviews  
 2. Train a Transformer-based model for sentiment classification  
 3. Evaluate performance using standard metrics and confusion matrix  
-4. Deploy an interactive dashboard to visualize results and allow real-time predictions  
+4. Deploy a Streamlit dashboard for real-time predictions and insights  
 
 ---
 
@@ -146,12 +146,14 @@ Confusion Matrix example:
 
 The trained DistilBERT weights are **not included** due to GitHub’s 100 MB limit.
 
-To use the model:
-1. Retrain it in Colab using the provided code, **or**
-2. Download from your Drive and place it in:
-   ```
-   models/distilbert_sentiment/
-   ```
+You can load the model from Hugging Face:
+```
+Ashwin20015/ai-echo-distilbert-sentiment
+```
+Or place your own trained model under:
+```
+models/distilbert_sentiment/
+```
 3. The app will automatically detect and use it for inference.
 
 ---
